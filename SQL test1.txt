@@ -1,0 +1,13 @@
+1 Документ простая работа с базовыми возможностями SQL(Вывод, Обновление, Добавление, Удаление)
+
+// Вывести все курсы больше 10
+1. SELECT * FROM currate WHERE RATE > 10
+
+// Обновить курс ZID
+2. UPDATE currate SET RATE = '0,8000000000' WHERE CODEFROM = 'ZID'
+
+// Добавление нового курса USD
+3. INSERT INTO currate VALUES ('USD', 'RUR', '59')
+
+// Удаление курса OMR
+4. DELETE FROM currate WHERE CODEFROM = 'OMR'

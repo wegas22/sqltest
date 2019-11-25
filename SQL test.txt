@@ -1,0 +1,15 @@
+1. SELECT * FROM currate WHERE RATE > 10
+2. UPDATE currate SET RATE = '0,8000000000' WHERE CODEFROM = 'ZID'
+3. INSERT INTO currate VALUES ('USD', 'RUR', '59')
+4. DELETE FROM currate WHERE CODEFROM = 'OMR'
+
+
+1. 2 варианта...
+SELECT users.users_id, name FROM users, orders WHERE orders.`status` = 0 and orders.users_id = users.users_id GROUP BY users.users_id 
+SELECT * FROM users WHERE users_id IN (SELECT users_id FROM orders WHERE status = 0)
+
+2. SELECT users.users_id, name, COUNT(orders.status) AS 'count' 
+FROM orders INNER JOIN users ON users.users_id = orders.users_id 
+WHERE orders.`status`= 1 
+GROUP BY orders.users_id 
+HAVING COUNT(orders.status) > 5

@@ -1,0 +1,25 @@
+2 Документ небольшие задачи на знание JOIN и составления подзапросов..
+
+/**
+* Задача выбрать всех пользователей у которых статус = 0
+*
+**/
+
+// Не рациональный вариант, но почему то в голову сначала он пришел))
+1.1 SELECT users.users_id, name FROM users, orders WHERE orders.`status` = 0 and orders.users_id = users.users_id GROUP BY users.users_id 
+
+// Вариант с подзапросами 
+1.2 SELECT * FROM users WHERE users_id IN (SELECT users_id FROM orders WHERE status = 0)
+
+
+/**
+* Задача выбрать всех пользователей у которых статус = 1 и у которых больше 5 записей в orders
+*
+**/
+
+// Вариант с JOIN, группировкой и HAVING
+2.2 SELECT users.users_id, name, COUNT(orders.status) AS 'count' 
+FROM orders INNER JOIN users ON users.users_id = orders.users_id 
+WHERE orders.`status`= 1 
+GROUP BY orders.users_id 
+HAVING COUNT(orders.status) > 5
